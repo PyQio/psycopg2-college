@@ -7,7 +7,9 @@ As you can probably deduce, this was my first time programming in Python. I coul
 This was the database structure given:
 - Sailor ( id:int , name:char(50), address:char(50), age:int, level:float)
 - Boat ( bid:char(25) , bname:char(50), size:char(30), captain:int)
+
 captain is a FK to Sailor and no attribute can be null.
+
 
 Below you can find the instructions given by the professors:
 1. Drops the two tables from the database if they already exist.
@@ -21,6 +23,7 @@ Below you can find the instructions given by the professors:
 9. Retrieves from the database and prints to the stderr the id of the 1 million sailors.
 10. Updates all the tuples that have value 200 as level and makes them have a level equal to 210 -- (your query should work even if many tuples have value 200 in the attribute level ).
 11. Selects from the table Sailor and prints to the stderr the id and the address of the sailors with level 210.
+
 
 Below you can find the output expected by the assignment:
 
