@@ -20,13 +20,13 @@ def continueTheScript(conn):
     _MAX_SAILOR = 1000000
     _MAX_BOAT = 1000000
 
-    # Punto 1
+    # Point 1
     start = timer()
     cur.execute( 'DROP TABLE IF EXISTS "Sailor" CASCADE; DROP TABLE IF EXISTS "Boat";' )
     end = timer()
     print(' Step 1 needs %s ns' % str(round((end - start)*1000000000, 0)), file=sys.stdout)
 
-    # Punto 2s
+    # Point 2s
     start = timer()
 
     cur.execute( 'CREATE TABLE "Sailor" ( ' +
@@ -44,9 +44,9 @@ def continueTheScript(conn):
     end = timer()
     print(' Step 2 needs %s ns' % str(round((end - start)*1000000000, 0)), file = sys.stdout)
 
-    # Punto 3
+    # Point 3
     start = timer()
-    indexList = generazioneIndexList(_MAX_SAILOR)
+    indexList = generateIndexList(_MAX_SAILOR)
     listSailorExecution = [
         [
             str(i),
@@ -71,7 +71,7 @@ def continueTheScript(conn):
     end = timer()
     print(' Step 3 needs %s ns' % str(round((end - start)*1000000000, 0)), file = sys.stdout)
 
-    # Punto 4
+    # Point 4
     start = timer()
     # set boat index (bid)
     listBoatId = {(
@@ -95,28 +95,29 @@ def continueTheScript(conn):
     end = timer()
     print(' Step 4 needs %s ns' % str(round((end - start)*1000000000, 0)), file = sys.stdout)
 
-    # Punto 5
-    stampaIdSailor(cur, 5)
+    # Point 5
+    printIdSailor(cur, 5)
 
-    # Punto 6
-    cambiaValoreLevel(cur, 185, 200, 6)
-    # Punto 7
+    # Point 6
+    updateLevelValue(cur, 185, 200, 6)
+    
+    # Point 7
     idAddressSailor(conn, 200, 7)
 
-    # Punto 8 
+    # Point 8 
     start = timer()
 
     cur.execute("CREATE INDEX level_index ON \"Sailor\" (level);")
     end = timer()
     print(' Step 8 needs %s ns' % str(round((end - start)*1000000000, 0)), file = sys.stdout)
 
-    # Punto 9
-    stampaIdSailor(cur, 9)
+    # Point 9
+    printIdSailor(cur, 9)
 
-    # Punto 10
-    cambiaValoreLevel(cur, 200, 210, 10)
+    # Point 10
+    updateLevelValue(cur, 200, 210, 10)
 
-    # Punto 11
+    # Point 11
     idAddressSailor(conn, 210, 11)
 
     # Clean up
@@ -125,7 +126,7 @@ def continueTheScript(conn):
     conn.close()
 
 
-def stampaIdSailor(cur, numFunc):
+def printIdSailor(cur, numFunc):
     start = timer()
     cur.execute('SELECT id FROM \"Sailor\" ORDER BY id;')
 
@@ -138,7 +139,7 @@ def stampaIdSailor(cur, numFunc):
     print(' Step %s needs %s ns' % (str(numFunc), str(round((end - start)*1000000000, 0))), file = sys.stdout)
 
 
-def cambiaValoreLevel(cur, prima, dopo, numFunc):
+def updateLevelValue(cur, prima, dopo, numFunc):
     start = timer()
     cur.execute("UPDATE \"Sailor\" SET level = %s WHERE level = %s;" % (dopo, prima))
     end = timer()
@@ -156,7 +157,7 @@ def idAddressSailor(conn, valore, numFunc):
     print(' Step %s needs %s ns' % (str(numFunc), str(round((end - start)*1000000000, 0))), file = sys.stdout)
 
 
-def generazioneIndexList(numRange):
+def generateIndexList(numRange):
     indexSet = { i for i in range(numRange) }
     indexList = list(indexSet)
     random.shuffle(indexList)
