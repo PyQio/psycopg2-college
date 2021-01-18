@@ -5,10 +5,9 @@ As you can probably deduce, this was my first time programming in Python. I coul
 
 
 This was the database structure given:
-Sailor ( id:int , name:char(50), address:char(50), age:int, level:float)
-Boat ( bid:char(25) , bname:char(50), size:char(30), captain:int)
-- captain is a FK to Sailor
-- No attribute can be null .
+- Sailor ( id:int , name:char(50), address:char(50), age:int, level:float)
+- Boat ( bid:char(25) , bname:char(50), size:char(30), captain:int)
+captain is a FK to Sailor and no attribute can be null.
 
 Below you can find the instructions given by the professors:
 1. Drops the two tables from the database if they already exist.
@@ -24,4 +23,5 @@ Below you can find the instructions given by the professors:
 11. Selects from the table Sailor and prints to the stderr the id and the address of the sailors with level 210.
 
 Below you can find the output expected by the assignment:
+
 For each of the above operations, you need to report (print to the stdout ) the time it took to execute it. To do it you may keep in a variable the time before starting the execution (in nanoseconds), then get the system time after the execution has been completed and the difference in nanoseconds is the approximate time it took for the step to execute.
